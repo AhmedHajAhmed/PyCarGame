@@ -46,14 +46,14 @@ pygame.display.update()
 
 
 # load your car
-me = pygame.image.load("./utils/car.png")
-me_loc = me.get_rect()
-me_loc.center = right_lane, height*0.8
+my_car = pygame.image.load("./utils/car.png")
+my_car_loc = my_car.get_rect()
+my_car_loc.center = right_lane, height*0.8
 
 # load enemy car 
-Dave = pygame.image.load("./utils/otherCar.png")
-Dave_loc = Dave.get_rect()
-Dave_loc.center = left_lane, height*0.2
+other_car = pygame.image.load("./utils/otherCar.png")
+other_car_loc = other_car.get_rect()
+other_car_loc.center = left_lane, height*0.2
 
 # load crash audio 
 laugh_sound = pygame.mixer.Sound("./utils/crash_sound.wav")
@@ -73,16 +73,16 @@ while running:
         print("Level up:", speed)
 
     # animate enemy vehicle by changing the height (index 1)
-    Dave_loc[1] += speed
-    if Dave_loc[1] > height:
+    other_car_loc[1] += speed
+    if other_car_loc[1] > height:
         # randomize lanes (left & right)
         if random.randint(0, 1) == 0:
-            Dave_loc.center = right_lane, -200
+            other_car_loc.center = right_lane, -200
         else:
-            Dave_loc.center = left_lane, -200 
+            other_car_loc.center = left_lane, -200 
 
     # end game (in case of collision)
-    if me_loc[0] == Dave_loc[0] and Dave_loc[1] > me_loc[1] -245:
+    if my_car_loc[0] == other_car_loc[0] and other_car_loc[1] > my_car_loc[1] -245:
         laugh_sound.play()
         time.sleep(1.8)
         break
@@ -97,11 +97,11 @@ while running:
 
             # if user press left button 
             if event.key in [K_a, K_LEFT]:
-                me_loc = me_loc.move([-int(road_w/2), 0])
+                my_car_loc = my_car_loc.move([-int(road_w/2), 0])
 
             # if user press right button 
             if event.key in [K_d, K_RIGHT]:
-                me_loc = me_loc.move([int(road_w/2), 0])
+                my_car_loc = my_car_loc.move([int(road_w/2), 0])
 
 
 
@@ -116,8 +116,8 @@ while running:
 
 
     # draw pics 
-    screen.blit(me, me_loc)
-    screen.blit(Dave, Dave_loc)
+    screen.blit(my_car, my_car_loc)
+    screen.blit(other_car, other_car_loc)
 
 
     pygame.display.update()
