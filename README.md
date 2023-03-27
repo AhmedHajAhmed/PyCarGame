@@ -5,9 +5,9 @@ PyCarGame is a simple car  game created using Python and the Pygame library. The
 ### Installation
 
 Before running the game, you will need to install the Pygame library. To do so, you can use pip:
-
-> '''pip install pygame'''
-
+'''
+> pip install pygame
+'''
 Once you have installed Pygame, you can run the game by executing the main.py file.
 
 ### Contributing
